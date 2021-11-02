@@ -31,8 +31,8 @@ export default {
           text: "چارت سازمانی تست",
         },
         xAxis: {
-          min: Date.UTC(2021, 10, 17),
-          max: Date.UTC(2021, 11, 15),
+          // min: Date.UTC(2021, 10, 17),
+          // max: Date.UTC(2021, 11, 15),
           type: "datetime",
           labels: {
             formatter: function () {
@@ -122,16 +122,16 @@ export default {
             end = Date.UTC(y, m, d);
 
             this_is.chart_data.push({
-              title: task.title,
+              name: task.title,
               start: start,
               end: end,
             });
           });
-
-          console.log("this_is.all_tasks");
           console.log(this_is.all_tasks);
+
           console.log("this_is.chart_data");
           console.log(this_is.chart_data);
+          this_is.chartOptions.series[0].data = this_is.chart_data;
         })
         .catch(function (error) {
           console.log(error);
@@ -156,11 +156,6 @@ const jdate = new JDate(new Date()).format("dddd DD MMMM YYYY"); // => default t
 console.log(jdate2.toGregorian);
 console.log(jdate4.format("dddd DD MMMM YYYY"));
 console.log(jdate);
-
-let str_date = "1393/10/11";
-console.log(Number(str_date.substr(0, 4)));
-console.log(str_date.substr(5, 2));
-console.log(str_date.substr(8, 2));
 </script>
 
 <style >

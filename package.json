@@ -13,7 +13,8 @@
     "highcharts": "^9.3.0",
     "highcharts-vue": "^1.4.0",
     "jalali-date": "^1.1.4",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "vue-jalali-moment": "^1.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",

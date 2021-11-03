@@ -7,7 +7,7 @@ import Highcharts from "highcharts";
 import Gantt from "highcharts/modules/gantt";
 Gantt(Highcharts);
 Vue.use(HighchartsVue)
-
+Vue.use(require('vue-jalali-moment'));
 Vue.config.productionTip = false
 new Vue({
   render: h => h(App),

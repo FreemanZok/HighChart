@@ -15,6 +15,7 @@
 
 <script>
 import { Chart } from "highcharts-vue";
+
 const JDate = require("jalali-date");
 
 export default {

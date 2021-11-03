@@ -9,12 +9,14 @@
           ref="chart"
         ></highcharts>
       </div>
+      <div></div>
     </div>
   </div>
 </template>
 
 <script>
 import { Chart } from "highcharts-vue";
+
 const JDate = require("jalali-date");
 
 export default {
@@ -30,6 +32,13 @@ export default {
         title: {
           text: "چارت سازمانی تست",
         },
+        tooltip: {
+          backgroundColor: "#cfededc7",
+          borderColor: "#bcbcbc54",
+          textColor: "white",
+          borderRadius: 10,
+          borderWidth: 3,
+        },
         xAxis: {
           // min: Date.UTC(2021, 10, 17),
           // max: Date.UTC(2021, 11, 15),
@@ -43,38 +52,17 @@ export default {
         },
         series: [
           {
-            name: "Project 1",
+            name: "پروژه یک",
             data: [
-              {
-                name: "تسک 1",
-                start: Date.UTC(2021, 11, 2),
-                end: Date.UTC(2021, 11, 5),
-                completed: 0.25,
-              },
-              {
-                name: "تسک 2",
-                start: Date.UTC(2021, 10, 27),
-                end: Date.UTC(2021, 10, 29),
-                completed: {
-                  amount: 0.1,
-                  fill: "#fab",
-                },
-              },
-              {
-                name: "تسک 3",
-                start: Date.UTC(2021, 10, 20),
-                end: Date.UTC(2021, 10, 25),
-                completed: {
-                  amount: 0.1,
-                  fill: "#fa0",
-                },
-              },
-              {
-                name: "تسک 4",
-                start: Date.UTC(2021, 10, 23),
-                end: Date.UTC(2021, 10, 26),
-                completed: 0.6,
-              },
+              // {
+              //   name: "تسک نفر اول",
+              //   start: Date.UTC(2021, 10, 27),
+              //   end: Date.UTC(2021, 10, 29),
+              //   completed: {
+              //     amount: 0.1,
+              //     fill: "#fab",
+              //   },
+              // },
             ],
           },
         ],
@@ -88,7 +76,7 @@ export default {
 
       var config = {
         method: "post",
-        url: "http://itsm-api.u4u.xyz/api/v1/OperatingProgram/Get?id=1",
+        url: "http://itsm-api.u4u.xyz/api/v1/OperatingProgram/GetChart?id=1",
         headers: {
           Authorization:
             "Bearer 4b6a33352b7a7453583359504758686c57797433714462677a45686e4e786766466146425a6533715576673d",
@@ -99,8 +87,8 @@ export default {
         .then(function (response) {
           this_is.all_tasks = response.data.data.programTasks;
           this_is.all_tasks.forEach((task) => {
-            let start = task.startDate;
-            let end = task.endDate;
+            let start = task.start;
+            let end = task.end;
 
             var y = Number(start.substr(0, 4));
             var m = Number(start.substr(5, 2));
@@ -110,7 +98,6 @@ export default {
             m = Number(some_variable.substr(5, 2));
             d = Number(some_variable.substr(8, 2));
             start = Date.UTC(y, m, d);
-
 
             y = Number(end.substr(0, 4));
             m = Number(end.substr(5, 2));
@@ -122,9 +109,10 @@ export default {
             end = Date.UTC(y, m, d);
 
             this_is.chart_data.push({
-              name: task.title,
+              name: task.name,
               start: start,
               end: end,
+              completed : task.completed,
             });
           });
           console.log(this_is.all_tasks);
@@ -149,13 +137,16 @@ export default {
   },
 };
 
-const jdate2 = new JDate(1393, 10, 11);
+const jdate2 = new JDate(new Date(2020, 1, 3));
 const jdate4 = new JDate(new Date(2014, 1, 3));
-const jdate = new JDate(new Date()).format("dddd DD MMMM YYYY"); // => default to today
 
+console.log(jdate2);
 console.log(jdate2.toGregorian);
 console.log(jdate4.format("dddd DD MMMM YYYY"));
-console.log(jdate);
+console.log(jdate4.format("dddd DD MMMM"));
+console.log(jdate4.format("dddd DD"));
+console.log(" fuck it");
+
 </script>
 
 <style >

@@ -9,6 +9,7 @@
           ref="chart"
         ></highcharts>
       </div>
+      <div></div>
     </div>
   </div>
 </template>
@@ -31,50 +32,44 @@ export default {
         title: {
           text: "چارت سازمانی تست",
         },
+        tooltip: {
+          backgroundColor: "#cfededc7",
+          borderColor: "#bcbcbc54",
+          textColor: "white",
+          borderRadius: 10,
+          borderWidth: 3,
+        },
         xAxis: {
           // min: Date.UTC(2021, 10, 17),
           // max: Date.UTC(2021, 11, 15),
           type: "datetime",
+          // labels: {
+          //   formatter: function () {
+          //     var someDate = new Date(this.value);
+          //     return someDate.toLocaleDateString("fa-IR");
+          //   },
+          // },
           labels: {
             formatter: function () {
-              var someDate = new Date(this.value);
-              return someDate.toLocaleDateString("fa-IR");
+              return new Date(this.value).toLocaleDateString("fa-IR");
             },
+            // format: "{value:هفته %W/%Y}",
+            align: "right",
+            rotation: -30,
           },
         },
         series: [
           {
-            name: "Project 1",
+            name: "پروژه یک",
             data: [
               {
-                name: "تسک 1",
-                start: Date.UTC(2021, 11, 2),
-                end: Date.UTC(2021, 11, 5),
-                completed: 0.25,
-              },
-              {
-                name: "تسک 2",
+                name: "تسک",
                 start: Date.UTC(2021, 10, 27),
                 end: Date.UTC(2021, 10, 29),
                 completed: {
                   amount: 0.1,
                   fill: "#fab",
                 },
-              },
-              {
-                name: "تسک 3",
-                start: Date.UTC(2021, 10, 20),
-                end: Date.UTC(2021, 10, 25),
-                completed: {
-                  amount: 0.1,
-                  fill: "#fa0",
-                },
-              },
-              {
-                name: "تسک 4",
-                start: Date.UTC(2021, 10, 23),
-                end: Date.UTC(2021, 10, 26),
-                completed: 0.6,
               },
             ],
           },
@@ -111,7 +106,6 @@ export default {
             m = Number(some_variable.substr(5, 2));
             d = Number(some_variable.substr(8, 2));
             start = Date.UTC(y, m, d);
-
 
             y = Number(end.substr(0, 4));
             m = Number(end.substr(5, 2));

@@ -182,7 +182,6 @@ console.log(jdate2.toGregorian);
 console.log(jdate4.format("dddd DD MMMM YYYY"));
 console.log(jdate4.format("dddd DD MMMM"));
 console.log(jdate4.format("dddd DD"));
-console.log(" fuck it");
 </script>
 
 <style >

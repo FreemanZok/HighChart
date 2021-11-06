@@ -39,30 +39,64 @@ export default {
           borderRadius: 10,
           borderWidth: 3,
         },
-        xAxis: {
-          // min: Date.UTC(2021, 10, 17),
-          // max: Date.UTC(2021, 11, 15),
-          type: "datetime",
-          labels: {
-            formatter: function () {
-              var someDate = new Date(this.value);
-              return someDate.toLocaleDateString("fa-IR");
+        xAxis: [
+          {
+            // min: Date.UTC(2021, 10, 17),
+            // max: Date.UTC(2021, 11, 15),
+            type: "datetime",
+            labels: {
+              formatter: function () {
+                var someDate = new Date(this.value);
+                return someDate.toLocaleDateString("fa-IR");
+              },
             },
           },
-        },
+        ],
+        // xAxis: [
+        //   {
+        //     labels: {
+        //       format: "{value:%w}", // day of the week
+        //     },
+        //     tickInterval: 1000 * 60 * 60 * 24, // Day
+        //   },
+        //   {
+        //     labels: {
+        //       format: "{value:هفته %W}",
+        //     },
+        //     tickInterval: 1000 * 60 * 60 * 24 * 7, // week
+        //   },
+        // ],
         series: [
           {
             name: "پروژه یک",
             data: [
-              // {
-              //   name: "تسک نفر اول",
-              //   start: Date.UTC(2021, 10, 27),
-              //   end: Date.UTC(2021, 10, 29),
-              //   completed: {
-              //     amount: 0.1,
-              //     fill: "#fab",
-              //   },
-              // },
+              {
+                name: "تسک نفر اول",
+                start: Date.UTC(2021, 10, 5),
+                end: Date.UTC(2021, 10, 29),
+                completed: {
+                  amount: 0.1,
+                  fill: "#ccb",
+                },
+              },
+              {
+                name: "تسک نفر دوم",
+                start: Date.UTC(2021, 10, 5),
+                end: Date.UTC(2021, 10, 12),
+                completed: {
+                  amount: 0.1,
+                  fill: "#fab",
+                },
+              },
+              {
+                name: "تسک نفر سوم",
+                start: Date.UTC(2021, 9, 27),
+                end: Date.UTC(2021, 10, 29),
+                completed: {
+                  amount: 0.1,
+                  fill: "#fab",
+                },
+              },
             ],
           },
         ],
@@ -79,7 +113,7 @@ export default {
         url: "http://itsm-api.u4u.xyz/api/v1/OperatingProgram/GetChart?id=1",
         headers: {
           Authorization:
-            "Bearer 4b6a33352b7a7453583359504758686c57797433714462677a45686e4e786766466146425a6533715576673d",
+            "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IkZGNEMzN0IzRjAwNEZBNjk1ODUxRUZENjY4NDc3NEQ2IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2MzYxMzA0MTUsImV4cCI6MTYzNjEzNDAxNSwiaXNzIjoiaHR0cDovL2lkNC51NHUueHl6IiwiY2xpZW50X2lkIjoiY2xpZW50IiwiY2xpZW50X09yZ2FuaXphdGlvblVuaXRJZHMiOiJbNDJdIiwiY2xpZW50X1JvbGVDb2RlcyI6IltcIjEwMDFcIl0iLCJjbGllbnRfUm9sZUlkcyI6IltcIjdmNTQyNmI5LThjYzctNGZmYy1iOGNkLWI1ZDk5YjY3MGUyOVwiXSIsImNsaWVudF9Qcm92aW5jZUlkcyI6IltcIjVcIl0iLCJzdWIiOiJlZWQ0MzA5YS0wMjI1LTQyZGEtOWVkYy04OTlhMmFhMDVhMjMiLCJhdXRoX3RpbWUiOjE2MzYxMzA0MTQsImlkcCI6ImxvY2FsIiwiaWF0IjoxNjM2MTMwNDE1LCJzY29wZSI6WyJhcGkxIiwib3BlbmlkIl0sImFtciI6WyJwd2QiXX0.UAYXUiUDU4aNfvH7YR__wu4esq4feUdZoHDQIO6yn2LP9dz6-sxxoZBGAfy4OkjWjVijMFPNEA7rElwuOdtHrFaCnxYX8c5qbjV2OCn8KZukjjJvuA8_aiGofZwICoOgy-9ixzJ4Bxc31B61X2Yz_ve7pfei-SpW-Sw1Ht_ieURjj0F1hnMB-w3LsaWK_1bVVCadUck9A3rU-KXc7zQmO4fb3WOlRmDlOtnx_xEq7LfhfVy6i7PncST0A93Wyzr84-rAEcP8gyWy34su1mDfKMxV-AqVNh2Gn3sV3yTm2-YGBnaGzkLz1fwNremDywEC18XdvHOWBrShxhMFuQ_1oA",
         },
       };
 
@@ -93,7 +127,9 @@ export default {
             var y = Number(start.substr(0, 4));
             var m = Number(start.substr(5, 2));
             var d = Number(start.substr(8, 2));
+
             var some_variable = this_is.convert(JDate.toGregorian(y, m, d));
+
             y = Number(some_variable.substr(0, 4));
             m = Number(some_variable.substr(5, 2));
             d = Number(some_variable.substr(8, 2));
@@ -103,6 +139,7 @@ export default {
             m = Number(end.substr(5, 2));
             d = Number(end.substr(8, 2));
             some_variable = this_is.convert(JDate.toGregorian(y, m, d));
+
             y = Number(some_variable.substr(0, 4));
             m = Number(some_variable.substr(5, 2));
             d = Number(some_variable.substr(8, 2));
@@ -112,7 +149,7 @@ export default {
               name: task.name,
               start: start,
               end: end,
-              completed : task.completed,
+              completed: task.completed,
             });
           });
           console.log(this_is.all_tasks);
@@ -146,8 +183,14 @@ console.log(jdate4.format("dddd DD MMMM YYYY"));
 console.log(jdate4.format("dddd DD MMMM"));
 console.log(jdate4.format("dddd DD"));
 console.log(" fuck it");
-
 </script>
 
 <style >
+/* .highchart{
+  // .highcharts-axis-labels .highcharts-xaxis-labels .highcharts-grid-axis{
+  //   text{
+  //     fill: greenyellow;
+  //   }
+  // }
+} */
 </style>
